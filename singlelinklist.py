@@ -144,6 +144,7 @@ class Linklist:
         '''
         result = []
         if self.is_empty():
+            print("Linklist is empty!")
             return
 
         cur = self.root
@@ -162,6 +163,9 @@ if __name__ == '__main__':
 
     s = Linklist()
     s.add('abc')
+    s.all()
+    s.remove('abc')
+    s.all()
     s.add('bcd')
     s.add('cde', head=True)
     s.add('def')
