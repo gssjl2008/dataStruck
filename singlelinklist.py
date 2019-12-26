@@ -154,13 +154,11 @@ class Linklist:
             n = 0
             cur = self.root
             while cur.next != None:
-                print('while loop ; %s' %n)
                 if n == ord:
                     cur.data = new
                     return
                 n += 1
                 cur = cur.next
-            print('while end ; %s' % n)
             if n == ord:
                 cur.data = new
             else:
@@ -169,12 +167,10 @@ class Linklist:
         elif isinstance(ord, str):
             cur = self.root
             while cur.next != None:
-                print('while loop ; %s' % cur)
                 if cur.data == ord:
                     cur.data = new
                     return
                 cur = cur.next
-            print('while end ; %s' % cur)
             if cur.data == ord:
                 cur.data = new
             else:
@@ -183,6 +179,11 @@ class Linklist:
             raise TypeError("ord must be str or int")
 
     def get(self, key):
+        '''
+        获取元素
+        :param key: int or str 根据索引或者值来查询
+        :return: Node 对象
+        '''
         if self.is_empty():
             print("Linklist is empty!")
             return
