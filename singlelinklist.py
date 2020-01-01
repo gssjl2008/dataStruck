@@ -4,18 +4,18 @@
 #@time: 2019/12/25 13:38
 #@desc:
 
-from dataclasses import dataclass
+#from dataclasses import dataclass
 
 # 使用python新版本特性 dataclasses
-@dataclass
+#@dataclass
 class Node:
-    data: None
-    next: None
+#    data: None
+#    next: None
 
     # 等同于下面
-    # def __init__(self, data, next):
-    #     self.data = data
-    #     self.next = next
+    def __init__(self, data, next):
+        self.data = data
+        self.next = next
     def __str__(self):
         return "data: %s, next:%s" %(self.data, self.next)
 
@@ -222,6 +222,24 @@ class Linklist:
         else:
             raise TypeError("ord must be str or int")
 
+    def index(self, value):
+        if self.is_empty():
+            return
+
+        cur = self.root
+        n = 0
+        while cur.next != None:
+            if cur.data == value:
+                print("%s index is : %s" %(value, n))
+                return n
+            else:
+                cur = cur.next
+                n  += 1
+        if cur.data == value:
+            print("%s index is : %s" % (value, n))
+            return n
+        else:
+            print("Linklist has not value : %s" %value)
 
     def all(self):
         '''
@@ -242,6 +260,32 @@ class Linklist:
         result.append(node)
         print(result)
         return result
+
+    def reverse(self):
+        '''
+        链表反转
+        :return:
+        '''
+        def _reverse_two_node(pre, cur):
+            tmp  = cur.next
+            cur.next = pre
+            pre = cur
+            cur = tmp
+            return pre, cur
+
+        if self.is_empty():
+            return
+
+        pre = self.root
+        cur = self.root.next
+
+        while cur != None:
+            pre, cur = _reverse_two_node(pre, cur)
+
+        self.root.next = None
+        self.root = pre
+
+
 
 
 
@@ -273,5 +317,7 @@ if __name__ == '__main__':
     s.all()
     s.get('xyz')
     print("---"*20)
-    for i in range(s.size()):
-        s.get(i)
+    s.all()
+    s.index('xyz')
+    s.reverse()
+    s.all()
