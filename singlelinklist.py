@@ -28,6 +28,7 @@ class Linklist:
     def __init__(self):
         #  根节点默认None
         self.root = None
+        self.key = -1
 
     def is_empty(self):
         # 跟节点为None 代表空
@@ -184,6 +185,7 @@ class Linklist:
         :param key: int or str 根据索引或者值来查询
         :return: Node 对象
         '''
+        print("INDEX : %s" %key)
         if self.is_empty():
             print("Linklist is empty!")
             return
@@ -285,7 +287,15 @@ class Linklist:
         self.root.next = None
         self.root = pre
 
+    def __iter__(self):
+        return self
 
+    def __next__(self):
+        self.key += 1
+        if self.key < self.size():
+            return self.get(self.key)
+        else:
+            exit()
 
 
 
@@ -321,3 +331,6 @@ if __name__ == '__main__':
     s.index('xyz')
     s.reverse()
     s.all()
+    print("-----" * 20)
+    for i in s:
+        print(i)
